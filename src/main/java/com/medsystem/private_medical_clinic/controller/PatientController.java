@@ -6,13 +6,9 @@ import com.medsystem.private_medical_clinic.mapper.PatientMapper;
 import com.medsystem.private_medical_clinic.service.PatientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-
-import java.awt.*;
 import java.util.*;
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -42,4 +38,5 @@ public class PatientController {
         Patient savedPatient = patientService.createPatient(patient);
         return ResponseEntity.ok(PatientMapper.mapToPatientDto(savedPatient));
     }
+
 }

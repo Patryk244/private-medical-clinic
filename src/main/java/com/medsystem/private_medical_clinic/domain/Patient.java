@@ -1,11 +1,9 @@
 package com.medsystem.private_medical_clinic.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -31,7 +29,7 @@ public class Patient {
     private String password;
 
     @Column(name = "birthDate")
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @Column(name = "isBlocked")
     private boolean isBlocked;
@@ -41,4 +39,5 @@ public class Patient {
 
     @Column(name = "country")
     private String country;
+
 }

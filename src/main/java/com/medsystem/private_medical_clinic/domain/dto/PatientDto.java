@@ -1,13 +1,15 @@
 package com.medsystem.private_medical_clinic.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class PatientDto {
     private Long patientId;
 
@@ -22,11 +24,12 @@ public class PatientDto {
     @Email(message = "Please type correct email")
     private String email;
 
-    @NotNull(message = "give me password xd")
+    @NotEmpty(message = "give me password xd")
     private String password;
 
     @Past
-    private Date birthDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthDate;
 
     private boolean isBlocked;
 
