@@ -1,6 +1,5 @@
 package com.medsystem.private_medical_clinic.controller;
 
-import com.google.gson.Gson;
 import com.medsystem.private_medical_clinic.domain.Patient;
 import com.medsystem.private_medical_clinic.domain.dto.PatientDto;
 import com.medsystem.private_medical_clinic.mapper.PatientMapper;
@@ -18,7 +17,6 @@ import tools.jackson.databind.ObjectMapper;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -31,8 +29,6 @@ import org.slf4j.*;
 @WebMvcTest(PatientController.class)
 class PatientControllerTest {
 
-    private static final Logger log = LoggerFactory.getLogger(PatientControllerTest.class);
-
     @Autowired
     private MockMvc mockMvc;
 
@@ -41,9 +37,6 @@ class PatientControllerTest {
 
     @MockitoBean
     private PatientMapper patientMapper;
-
-
-
 
     @Test
     void shouldFetchEmptyList() throws Exception {
@@ -77,13 +70,9 @@ class PatientControllerTest {
 
         String patientJson = new ObjectMapper().writeValueAsString(patientDto);
         when(patientService.createPatient(any(Patient.class))).thenReturn(patient);
-
-        log.info("patientJson: {}", patientJson);
-
         mockMvc.perform(post("/v1/patient")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(patientJson)) // Przekazujemy wygenerowany JSON
-                .andDo(print())
+                        .content(patientJson))
                 .andExpect(status().isOk());
     }
 }

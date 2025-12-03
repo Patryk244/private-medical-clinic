@@ -1,5 +1,6 @@
 package com.medsystem.private_medical_clinic.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,6 +33,7 @@ public class Patient {
     private LocalDate birthDate;
 
     @Column(name = "isBlocked")
+    @JsonProperty("isBlocked")
     private boolean isBlocked;
 
     @Column(name = "city")

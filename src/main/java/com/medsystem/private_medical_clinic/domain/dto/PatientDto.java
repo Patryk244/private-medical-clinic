@@ -1,6 +1,7 @@
 package com.medsystem.private_medical_clinic.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
@@ -31,6 +32,7 @@ public class PatientDto {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 
+    @JsonProperty("isBlocked")
     private boolean isBlocked;
 
     @NotNull

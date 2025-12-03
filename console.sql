@@ -64,6 +64,6 @@ VALUES ('Andrzej', 'Górski', 'andrzej.gorski@example.com', 'SecurePassword123',
 INSERT INTO patients (first_name, last_name, email, password, birth_date, is_blocked, city, country)
 VALUES ('Karolina', 'Adamczyk', 'karolina.adamczyk@example.com', 'SecurePassword123', '1980-08-29', FALSE, 'Bielsko-Biała', 'Polska');
 
-delete from patients where patient_id = 3;
+delete from patients where patient_id <= 100;
 
 drop table patients;
