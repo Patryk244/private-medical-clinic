@@ -30,4 +30,9 @@ public class HttpGlobalErrorController extends ResponseEntityExceptionHandler {
         errors.put("message: ", "This patient is exist in database");
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(PatientNotFound.class)
+    public ResponseEntity<Object> handlePatientNotFound(PatientNotFound ext) {
+        return new ResponseEntity<>("Patient not found",HttpStatus.NOT_FOUND);
+    }
 }

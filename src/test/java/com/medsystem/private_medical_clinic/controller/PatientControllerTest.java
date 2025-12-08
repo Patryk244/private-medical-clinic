@@ -53,7 +53,7 @@ class PatientControllerTest {
         LocalDate date = LocalDate.of(1995, 5 ,6);
 
         PatientDto patientDto = new PatientDto(
-                null, "Anna", "Nowak", "anna@example.com", "tajneee456",
+                null, "Anna", "Nowak", "anna@example.com", "12345678900",
                 date, false, "Krakow", "Polska"
         );
         Patient patient = PatientMapper.mapToPatient(new PatientDto(
@@ -61,7 +61,7 @@ class PatientControllerTest {
                 patientDto.getFirstName(),
                 patientDto.getLastName(),
                 patientDto.getEmail(),
-                patientDto.getPassword(),
+                patientDto.getPesel(),
                 patientDto.getBirthDate(),
                 patientDto.isBlocked(),
                 patientDto.getCity(),

@@ -6,10 +6,12 @@ import com.medsystem.private_medical_clinic.mapper.PatientMapper;
 import com.medsystem.private_medical_clinic.service.PatientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1/")
@@ -29,7 +31,7 @@ public class PatientController {
                 patientDto.getFirstName(),
                 patientDto.getLastName(),
                 patientDto.getEmail(),
-                patientDto.getPassword(),
+                patientDto.getPesel(),
                 patientDto.getBirthDate(),
                 patientDto.isBlocked(),
                 patientDto.getCity(),
@@ -37,6 +39,14 @@ public class PatientController {
         ));
         Patient savedPatient = patientService.createPatient(patient);
         return ResponseEntity.ok(PatientMapper.mapToPatientDto(savedPatient));
+    }
+
+    @GetMapping(value = "patient/find/")
+    public ResponseEntity<PatientDto> getPatient(@RequestParam String email, @RequestParam String pesel) {
+        log.info("email: " + email + " pesel: " + pesel);
+        Patient patient = patientService.findPatientByEmailAndPesel(email, pesel);
+        PatientDto patientDto = PatientMapper.mapToPatientDto(patient);
+        return ResponseEntity.ok(patientDto);
     }
 
 }

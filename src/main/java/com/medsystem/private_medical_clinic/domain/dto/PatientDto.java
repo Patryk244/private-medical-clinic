@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import org.hibernate.validator.constraints.pl.PESEL;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -25,15 +26,15 @@ public class PatientDto {
     @Email(message = "Please type correct email")
     private String email;
 
-    @NotEmpty(message = "give me password xd")
-    private String password;
+
+    @PESEL
+    private String pesel;
 
     @Past
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 
-    @JsonProperty("isBlocked")
-    private boolean isBlocked;
+    private boolean blocked;
 
     @NotNull
     @NotEmpty
