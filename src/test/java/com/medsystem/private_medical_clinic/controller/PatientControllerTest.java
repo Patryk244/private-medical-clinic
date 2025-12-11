@@ -38,6 +38,8 @@ class PatientControllerTest {
     @MockitoBean
     private PatientMapper patientMapper;
 
+    private static final Logger logger = LoggerFactory.getLogger(PatientControllerTest.class);
+
     @Test
     void shouldFetchEmptyList() throws Exception {
         when(patientService.getAllPatients()).thenReturn(List.of());
@@ -53,7 +55,7 @@ class PatientControllerTest {
         LocalDate date = LocalDate.of(1995, 5 ,6);
 
         PatientDto patientDto = new PatientDto(
-                null, "Anna", "Nowak", "anna@example.com", "12345678900",
+                null, "Anna", "Nowak", "anna@example.com", "95050602449",
                 date, false, "Krakow", "Polska"
         );
         Patient patient = PatientMapper.mapToPatient(new PatientDto(
@@ -69,6 +71,7 @@ class PatientControllerTest {
         ));
 
         String patientJson = new ObjectMapper().writeValueAsString(patientDto);
+        logger.info("patientJson: {}", patientJson);
         when(patientService.createPatient(any(Patient.class))).thenReturn(patient);
         mockMvc.perform(post("/v1/patient")
                         .contentType(MediaType.APPLICATION_JSON)

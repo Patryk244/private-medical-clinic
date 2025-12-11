@@ -26,7 +26,7 @@ public class PatientDto {
     private String email;
 
 
-    @PESEL(message = "Incorrect email!")
+    @PESEL(message = "Incorrect pesel!")
     private String pesel;
 
     @Past

@@ -3,7 +3,7 @@ package com.medsystem.private_medical_clinic.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.NamedQuery;
-import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.pl.PESEL;
 
 import java.time.LocalDate;
 
@@ -32,7 +32,7 @@ public class Patient {
     private String email;
 
     @Column(name = "pesel")
-    @Length(min = 11, max = 11)
+    @PESEL
     private String pesel;
 
     @Column(name = "birthDate")

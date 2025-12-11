@@ -6,8 +6,7 @@ import com.medsystem.private_medical_clinic.mapper.DoctorMapper;
 import com.medsystem.private_medical_clinic.service.DoctorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import org.slf4j.*;
@@ -27,10 +26,6 @@ public class DoctorController {
 
     @PostMapping(value = "doctor", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<DoctorDto> addDoctor(@Valid @RequestBody DoctorDto doctorDto) {
-        log.info("Doctor firstname: " + doctorDto.getFirstName());
-        log.info("Doctor lastname: " + doctorDto.getLastName());
-        log.info("Doctor email: " + doctorDto.getEmail());
-        log.info("Doctor specialization: " + doctorDto.getSpecialization());
         Doctor doctor = DoctorMapper.maptoDoctor(new DoctorDto(
                 null,
                 doctorDto.getFirstName(),

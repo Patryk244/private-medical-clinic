@@ -2,7 +2,7 @@ create database medical_clinic;
 
 use medical_clinic;
 
-delete from patients where patient_id <= 100;
+-- Patients
 
 INSERT INTO patients (first_name, last_name, email, pesel, birth_date, blocked, city, country)
 VALUES ('Jan', 'Kowalski', 'jan.kowalski@example.com', '12345678901', '1990-01-01', FALSE, 'Warszawa', 'Polska');
@@ -74,5 +74,26 @@ drop table patients;
 
 -- Doctors
 
-select d.specialization from doctors d;
-select * from doctors;
+INSERT INTO doctors (first_name, last_name, email, specialization) VALUES
+                                                                     ('Anna', 'Kowalska', 'anna.kowalska@example.com', 'Ophthalmology'),
+                                                                     ('Piotr', 'Nowak', 'piotr.nowak@example.com', 'Psychiatry'),
+                                                                     ('Ewa', 'Wiśniewska', 'ewa.wisniewska@example.com', 'Urology'),
+                                                                     ('Krzysztof', 'Zieliński', 'krzysztof.zielinski@example.com', 'Cardiology'),
+                                                                     ('Magdalena', 'Wójcik', 'magdalena.wojcik@example.com', 'Ophthalmology'),
+                                                                     ('Andrzej', 'Kowalczyk', 'andrzej.kowalczyk@example.com', 'Psychiatry'),
+                                                                     ('Monika', 'Lewandowska', 'monika.lewandowska@example.com', 'Urology'),
+                                                                     ('Tomasz', 'Dąbrowski', 'tomasz.dabrowski@example.com', 'Cardiology'),
+                                                                     ('Katarzyna', 'Michalska', 'katarzyna.michalska@example.com', 'Ophthalmology'),
+                                                                     ('Jan', 'Adamek', 'jan.adamek@example.com', 'Psychiatry'),
+                                                                     ('Alicja', 'Wróbel', 'alicja.wrobel@example.com', 'Urology'),
+                                                                     ('Marek', 'Jankowski', 'marek.jankowski@example.com', 'Cardiology'),
+                                                                     ('Karolina', 'Szymańska', 'karolina.szymanska@example.com', 'Ophthalmology'),
+                                                                     ('Michał', 'Bąk', 'michal.bak@example.com', 'Psychiatry'),
+                                                                     ('Julia', 'Górska', 'julia.gorska@example.com', 'Urology'),
+                                                                     ('Paweł', 'Kaczmarek', 'pawel.kaczmarek@example.com', 'Cardiology'),
+                                                                     ('Weronika', 'Borowska', 'weronika.borowska@example.com', 'Ophthalmology'),
+                                                                     ('Łukasz', 'Mazur', 'lukasz.mazur@example.com', 'Psychiatry'),
+                                                                     ('Natalia', 'Pająk', 'natalia.pajak@example.com', 'Urology'),
+                                                                     ('Grzegorz', 'Wesołowski', 'grzegorz.wesolowski@example.com', 'Cardiology');
+
+drop table doctors;

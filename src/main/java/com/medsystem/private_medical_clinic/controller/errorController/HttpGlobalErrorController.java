@@ -27,7 +27,7 @@ public class HttpGlobalErrorController extends ResponseEntityExceptionHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<HashMap<String, String>> handleDataIntegrityViolationException(DataIntegrityViolationException ext) {
         HashMap<String, String> errors = new HashMap<>();
-        errors.put("message: ", "This patient is exist in database");
+        errors.put("message: ", "Don't repeat data in database.");
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 

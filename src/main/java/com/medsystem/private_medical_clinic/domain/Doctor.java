@@ -18,7 +18,7 @@ public class Doctor {
     private String firstName;
     @Column(name = "lastName")
     private String lastName;
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     @Email
     private String email;
 
