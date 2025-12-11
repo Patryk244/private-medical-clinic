@@ -67,3 +67,12 @@ VALUES ('Karolina', 'Adamczyk', 'karolina.adamczyk@example.com', '09876543210', 
 delete from patients where patient_id <= 100;
 
 drop table patients;
+
+
+
+
+
+-- Doctors
+
+select d.specialization from doctors d;
+select * from doctors;

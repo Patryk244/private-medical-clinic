@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.pl.PESEL;
 
 import java.time.LocalDate;
@@ -15,19 +16,17 @@ import java.util.Date;
 public class PatientDto {
     private Long patientId;
 
-    @NotNull
-    @NotEmpty
+    @Length(min = 3, max = 50, message = "Typing name between from 3 to 50 characters")
     private String firstName;
 
-    @NotNull
-    @NotEmpty
+    @Length(min = 3, max = 50, message = "Typing name between from 3 to 50 characters")
     private String lastName;
 
     @Email(message = "Please type correct email")
     private String email;
 
 
-    @PESEL
+    @PESEL(message = "Incorrect email!")
     private String pesel;
 
     @Past
