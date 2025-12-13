@@ -7,14 +7,9 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class NbpTableDto {
-
+public class NbpCurrencyDto {
     private String table;
-
     private String currency;
-
     private String code;
-
     private List<RateNbpDto> rates;
-
 }

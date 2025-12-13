@@ -1,6 +1,6 @@
 package com.medsystem.private_medical_clinic.client;
 
-import com.medsystem.private_medical_clinic.domain.dto.NbpTableDto;
+import com.medsystem.private_medical_clinic.domain.dto.NbpCurrencyDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.slf4j.*;
@@ -25,8 +25,8 @@ public class NbpClient {
                 .build().encode().toUri();
     }
 
-    public List<NbpTableDto> getNbpTable(String typeTable, String currency) {
-        NbpTableDto[] nbpTableDto = restTemplate.getForObject(buildNbpUri(typeTable, currency), NbpTableDto[].class);
+    public List<NbpCurrencyDto> getNbpTable(String typeTable, String currency) {
+        NbpCurrencyDto[] nbpTableDto = restTemplate.getForObject(buildNbpUri(typeTable, currency), NbpCurrencyDto[].class);
         logger.info(nbpTableDto.toString());
         return Arrays.asList(nbpTableDto);
     }

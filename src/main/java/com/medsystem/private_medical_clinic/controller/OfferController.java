@@ -4,12 +4,15 @@ import com.medsystem.private_medical_clinic.client.NbpClient;
 import com.medsystem.private_medical_clinic.domain.Offer;
 import com.medsystem.private_medical_clinic.domain.dto.OfferDto;
 import com.medsystem.private_medical_clinic.mapper.OfferMapper;
+import com.medsystem.private_medical_clinic.service.NbpService;
 import com.medsystem.private_medical_clinic.service.OfferService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
 import java.util.List;
 import org.slf4j.*;
 
@@ -20,6 +23,7 @@ public class OfferController {
 
     private final NbpClient nbpClient;
     private final OfferService offerService;
+    private final NbpService nbpService;
     private static final Logger log = LoggerFactory.getLogger(OfferController.class);
 
     @GetMapping("offers")
@@ -48,11 +52,11 @@ public class OfferController {
         return ResponseEntity.ok(OfferMapper.mapToOfferDto(savedAfterChanges));
     }
 
-    @GetMapping("currency/{table}/{currency}")
-    public String getCurrencyFromNbp(@PathVariable String table,@PathVariable String currency) {
-        System.out.println("table: "+table);
-        System.out.println("currency: "+currency);
-        log.info(nbpClient.getNbpTable(table, currency).toString());
-        return "ok";
+    @GetMapping("currency/{currency}")
+    public BigDecimal getCurrencyFromNbp(@PathVariable String currency) {
+        BigDecimal rate = nbpService.getEuroCurrency(currency);
+        log.info("Current EUR RATE: {}", rate);
+
+        return rate;
     }
 }
