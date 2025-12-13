@@ -1,5 +1,6 @@
 package com.medsystem.private_medical_clinic.controller;
 
+import com.medsystem.private_medical_clinic.client.NbpClient;
 import com.medsystem.private_medical_clinic.domain.Offer;
 import com.medsystem.private_medical_clinic.domain.dto.OfferDto;
 import com.medsystem.private_medical_clinic.mapper.OfferMapper;
@@ -10,14 +11,16 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import org.slf4j.*;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1/")
 public class OfferController {
 
-
+    private final NbpClient nbpClient;
     private final OfferService offerService;
+    private static final Logger log = LoggerFactory.getLogger(OfferController.class);
 
     @GetMapping("offers")
     public List<OfferDto> getAllOffers() {
@@ -43,5 +46,13 @@ public class OfferController {
         findOfferById.setPricePln(offerDto.getPricePln());
         Offer savedAfterChanges = offerService.createOffer(findOfferById);
         return ResponseEntity.ok(OfferMapper.mapToOfferDto(savedAfterChanges));
+    }
+
+    @GetMapping("currency/{table}/{currency}")
+    public String getCurrencyFromNbp(@PathVariable String table,@PathVariable String currency) {
+        System.out.println("table: "+table);
+        System.out.println("currency: "+currency);
+        log.info(nbpClient.getNbpTable(table, currency).toString());
+        return "ok";
     }
 }
