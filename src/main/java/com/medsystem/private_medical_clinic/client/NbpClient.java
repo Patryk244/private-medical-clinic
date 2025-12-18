@@ -25,9 +25,13 @@ public class NbpClient {
                 .build().encode().toUri();
     }
 
-    public List<NbpCurrencyDto> getNbpTable(String typeTable, String currency) {
-        NbpCurrencyDto[] nbpTableDto = restTemplate.getForObject(buildNbpUri(typeTable, currency), NbpCurrencyDto[].class);
-        logger.info(nbpTableDto.toString());
-        return Arrays.asList(nbpTableDto);
+    public NbpCurrencyDto getCurrencyRate(String currency) {
+        URI url = buildNbpUri("A", currency);
+        try {
+            return restTemplate.getForObject(url, NbpCurrencyDto.class);
+        } catch (Exception e) {
+            logger.error("Unable to get a currency {}: {}", currency, e.getMessage());
+            return null;
+        }
     }
 }

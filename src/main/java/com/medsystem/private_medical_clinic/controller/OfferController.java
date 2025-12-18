@@ -21,7 +21,6 @@ import org.slf4j.*;
 @RequestMapping("/v1/")
 public class OfferController {
 
-    private final NbpClient nbpClient;
     private final OfferService offerService;
     private final NbpService nbpService;
     private static final Logger log = LoggerFactory.getLogger(OfferController.class);
@@ -55,7 +54,7 @@ public class OfferController {
     @GetMapping("currency/{currency}")
     public BigDecimal getCurrencyFromNbp(@PathVariable String currency) {
         BigDecimal rate = nbpService.getEuroCurrency(currency);
-        log.info("Current EUR RATE: {}", rate);
+        log.info("Current " + currency + " RATE: {}", rate);
 
         return rate;
     }
